@@ -1,15 +1,25 @@
 import { ArrowRight, Terminal, Sparkles, Target, Clock, TrendingUp, CheckCircle2, Flame, BookMarked, AlertTriangle } from 'lucide-react';
 
-export function Dashboard() {
+interface DashboardProps {
+  theme: 'light' | 'dark';
+}
+
+export function Dashboard({ theme }: DashboardProps) {
+  const isDark = theme === 'dark';
+
   return (
     <div className="w-full p-8 pb-16 space-y-8 animate-[fadeIn_0.6s_ease-out]">
       {/* Hero Section */}
       <div className="relative overflow-hidden rounded-[2rem] p-12"
            style={{
-             background: 'linear-gradient(135deg, rgba(255, 139, 123, 0.08), rgba(196, 181, 253, 0.08))',
-             border: '1px solid rgba(255, 255, 255, 0.12)',
+             background: isDark
+               ? 'linear-gradient(135deg, rgba(255, 139, 123, 0.08), rgba(196, 181, 253, 0.08))'
+               : 'linear-gradient(135deg, rgba(255, 139, 123, 0.12), rgba(196, 181, 253, 0.12))',
+             border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid rgba(255, 255, 255, 0.4)',
              backdropFilter: 'blur(60px) saturate(180%)',
-             boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+             boxShadow: isDark
+               ? '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08)'
+               : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
            }}>
         {/* Inner glow */}
         <div className="absolute inset-0 rounded-[2rem] opacity-40"
@@ -35,7 +45,9 @@ export function Dashboard() {
               style={{
                 fontFamily: 'var(--font-heading)',
                 fontWeight: 700,
-                background: 'linear-gradient(135deg, #F5F5F0 0%, #FFB5A0 100%)',
+                background: isDark
+                  ? 'linear-gradient(135deg, #F5F5F0 0%, #FFB5A0 100%)'
+                  : 'linear-gradient(135deg, #0A0A0B 0%, #FF8B7B 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 letterSpacing: '-0.03em',
@@ -43,8 +55,13 @@ export function Dashboard() {
             Learn scripting for the Apple environment
           </h1>
 
-          <p className="text-xl opacity-70 mb-8 leading-relaxed max-w-2xl"
-             style={{ fontFamily: 'var(--font-body)', fontWeight: 400 }}>
+          <p className="text-xl mb-8 leading-relaxed max-w-2xl"
+             style={{
+               fontFamily: 'var(--font-body)',
+               fontWeight: 400,
+               opacity: isDark ? 0.7 : 0.6,
+               color: isDark ? '#F5F5F0' : '#0A0A0B',
+             }}>
             Master shell, AppleScript, and AI-assisted automation through real-world lessons,
             guided labs, and script reviews.
           </p>
@@ -73,10 +90,12 @@ export function Dashboard() {
         {/* Continue Learning - Large */}
         <div className="col-span-8 row-span-2 rounded-[2rem] p-8 group cursor-pointer transition-all duration-500 hover:scale-[1.01] relative overflow-hidden"
              style={{
-               background: 'rgba(20, 20, 22, 0.4)',
-               border: '1px solid rgba(255, 255, 255, 0.1)',
+               background: isDark ? 'rgba(20, 20, 22, 0.4)' : 'rgba(255, 255, 255, 0.5)',
+               border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(255, 255, 255, 0.5)',
                backdropFilter: 'blur(60px) saturate(180%)',
-               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)',
+               boxShadow: isDark
+                 ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)'
+                 : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
              }}>
           {/* Localized glow */}
           <div className="absolute inset-0 opacity-30 pointer-events-none"
@@ -87,13 +106,28 @@ export function Dashboard() {
           <div className="relative z-10">
             <div className="flex items-start justify-between mb-6">
               <div>
-                <div className="text-[13px] opacity-50 mb-2 uppercase tracking-wider" style={{ fontFamily: 'var(--font-body)' }}>
+                <div className="text-[13px] opacity-50 mb-2 uppercase tracking-wider"
+                     style={{
+                       fontFamily: 'var(--font-body)',
+                       color: isDark ? '#F5F5F0' : '#0A0A0B',
+                     }}>
                   Shell Scripting Fundamentals
                 </div>
-                <h3 className="text-3xl mb-2 tracking-tight" style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, letterSpacing: '-0.02em' }}>
+                <h3 className="text-3xl mb-2 tracking-tight"
+                    style={{
+                      fontFamily: 'var(--font-heading)',
+                      fontWeight: 600,
+                      letterSpacing: '-0.02em',
+                      color: isDark ? '#F5F5F0' : '#0A0A0B',
+                    }}>
                   Lesson 12: Error Handling
                 </h3>
-                <p className="opacity-70 text-[15px] leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
+                <p className="text-[15px] leading-relaxed"
+                   style={{
+                     fontFamily: 'var(--font-body)',
+                     opacity: isDark ? 0.7 : 0.6,
+                     color: isDark ? '#F5F5F0' : '#0A0A0B',
+                   }}>
                   Learn to catch and handle errors gracefully in your scripts
                 </p>
               </div>
@@ -113,8 +147,8 @@ export function Dashboard() {
             <div className="space-y-3 mb-8">
               <div className="h-2.5 rounded-full overflow-hidden relative"
                    style={{
-                     background: 'rgba(255, 255, 255, 0.05)',
-                     border: '1px solid rgba(255, 255, 255, 0.08)',
+                     background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                     border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
                    }}>
                 <div className="h-full rounded-full transition-all duration-500 relative overflow-hidden"
                      style={{
@@ -125,7 +159,8 @@ export function Dashboard() {
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_infinite]" />
                 </div>
               </div>
-              <div className="flex items-center gap-4 text-[13px] opacity-50">
+              <div className="flex items-center gap-4 text-[13px] opacity-50"
+                   style={{ color: isDark ? '#F5F5F0' : '#0A0A0B' }}>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4" />
                   <span>15 min left</span>
@@ -139,10 +174,11 @@ export function Dashboard() {
 
             <button className="flex items-center gap-2 px-6 py-3 rounded-[1rem] transition-all hover:scale-[1.02]"
                     style={{
-                      background: 'rgba(255, 255, 255, 0.08)',
-                      border: '1px solid rgba(255, 255, 255, 0.15)',
+                      background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
+                      border: isDark ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid rgba(0, 0, 0, 0.12)',
                       backdropFilter: 'blur(20px)',
-                      boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                      boxShadow: isDark ? 'inset 0 1px 0 rgba(255, 255, 255, 0.1)' : 'inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+                      color: isDark ? '#F5F5F0' : '#0A0A0B',
                     }}>
               <span style={{ fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: '14px' }}>Resume Lesson</span>
               <ArrowRight className="w-4 h-4" />
@@ -164,13 +200,24 @@ export function Dashboard() {
                }} />
           <div className="relative z-10">
             <Flame className="w-8 h-8 text-[#FF8B7B] mb-4 drop-shadow-[0_0_12px_rgba(255,139,123,0.6)]" />
-            <div className="text-5xl mb-2 tracking-tight" style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, letterSpacing: '-0.03em' }}>
+            <div className="text-5xl mb-2 tracking-tight"
+                 style={{
+                   fontFamily: 'var(--font-heading)',
+                   fontWeight: 700,
+                   letterSpacing: '-0.03em',
+                   color: isDark ? '#F5F5F0' : '#0A0A0B',
+                 }}>
               12
             </div>
-            <div className="text-[13px] opacity-70 tracking-wide" style={{ fontFamily: 'var(--font-body)' }}>
+            <div className="text-[13px] opacity-70 tracking-wide"
+                 style={{
+                   fontFamily: 'var(--font-body)',
+                   color: isDark ? '#F5F5F0' : '#0A0A0B',
+                 }}>
               Day Streak
             </div>
-            <div className="mt-4 text-[12px] opacity-50">
+            <div className="mt-4 text-[12px] opacity-50"
+                 style={{ color: isDark ? '#F5F5F0' : '#0A0A0B' }}>
               Keep it going! 🔥
             </div>
           </div>
@@ -190,13 +237,24 @@ export function Dashboard() {
                }} />
           <div className="relative z-10">
             <CheckCircle2 className="w-8 h-8 text-[#7DD3FC] mb-4 drop-shadow-[0_0_12px_rgba(125,211,252,0.6)]" />
-            <div className="text-5xl mb-2 tracking-tight" style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, letterSpacing: '-0.03em' }}>
+            <div className="text-5xl mb-2 tracking-tight"
+                 style={{
+                   fontFamily: 'var(--font-heading)',
+                   fontWeight: 700,
+                   letterSpacing: '-0.03em',
+                   color: isDark ? '#F5F5F0' : '#0A0A0B',
+                 }}>
               38
             </div>
-            <div className="text-[13px] opacity-70 tracking-wide" style={{ fontFamily: 'var(--font-body)' }}>
+            <div className="text-[13px] opacity-70 tracking-wide"
+                 style={{
+                   fontFamily: 'var(--font-body)',
+                   color: isDark ? '#F5F5F0' : '#0A0A0B',
+                 }}>
               Lessons Completed
             </div>
-            <div className="mt-4 text-[12px] opacity-50">
+            <div className="mt-4 text-[12px] opacity-50"
+                 style={{ color: isDark ? '#F5F5F0' : '#0A0A0B' }}>
               +3 this week
             </div>
           </div>
@@ -205,10 +263,12 @@ export function Dashboard() {
         {/* Shell Scripting Path */}
         <div className="col-span-4 rounded-[2rem] p-6 group cursor-pointer transition-all duration-500 hover:scale-[1.02] relative overflow-hidden"
              style={{
-               background: 'rgba(20, 20, 22, 0.4)',
-               border: '1px solid rgba(255, 255, 255, 0.1)',
+               background: isDark ? 'rgba(20, 20, 22, 0.4)' : 'rgba(255, 255, 255, 0.5)',
+               border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(255, 255, 255, 0.5)',
                backdropFilter: 'blur(60px) saturate(180%)',
-               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)',
+               boxShadow: isDark
+                 ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)'
+                 : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
              }}>
           <div className="absolute inset-0 opacity-25 pointer-events-none"
                style={{
@@ -216,17 +276,26 @@ export function Dashboard() {
                }} />
           <div className="relative z-10">
             <Terminal className="w-8 h-8 text-[#86EFAC] mb-4 drop-shadow-[0_0_12px_rgba(134,239,172,0.5)]" />
-            <h4 className="text-xl mb-2 tracking-tight" style={{ fontFamily: 'var(--font-heading)', fontWeight: 600 }}>
+            <h4 className="text-xl mb-2 tracking-tight"
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 600,
+                  color: isDark ? '#F5F5F0' : '#0A0A0B',
+                }}>
               Shell Scripting
             </h4>
-            <p className="text-[13px] opacity-60 mb-4" style={{ fontFamily: 'var(--font-body)' }}>
+            <p className="text-[13px] opacity-60 mb-4"
+               style={{
+                 fontFamily: 'var(--font-body)',
+                 color: isDark ? '#F5F5F0' : '#0A0A0B',
+               }}>
               Master bash fundamentals
             </p>
             <div className="flex items-center gap-2">
               <div className="flex-1 h-2 rounded-full overflow-hidden relative"
                    style={{
-                     background: 'rgba(255, 255, 255, 0.05)',
-                     border: '1px solid rgba(255, 255, 255, 0.08)',
+                     background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                     border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
                    }}>
                 <div className="h-full rounded-full relative overflow-hidden"
                      style={{
@@ -245,10 +314,12 @@ export function Dashboard() {
         {/* AppleScript Basics */}
         <div className="col-span-4 rounded-[2rem] p-6 group cursor-pointer transition-all duration-500 hover:scale-[1.02] relative overflow-hidden"
              style={{
-               background: 'rgba(20, 20, 22, 0.4)',
-               border: '1px solid rgba(255, 255, 255, 0.1)',
+               background: isDark ? 'rgba(20, 20, 22, 0.4)' : 'rgba(255, 255, 255, 0.5)',
+               border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(255, 255, 255, 0.5)',
                backdropFilter: 'blur(60px) saturate(180%)',
-               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)',
+               boxShadow: isDark
+                 ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)'
+                 : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
              }}>
           <div className="absolute inset-0 opacity-25 pointer-events-none"
                style={{
@@ -256,17 +327,26 @@ export function Dashboard() {
                }} />
           <div className="relative z-10">
             <BookMarked className="w-8 h-8 text-[#C4B5FD] mb-4 drop-shadow-[0_0_12px_rgba(196,181,253,0.5)]" />
-            <h4 className="text-xl mb-2 tracking-tight" style={{ fontFamily: 'var(--font-heading)', fontWeight: 600 }}>
+            <h4 className="text-xl mb-2 tracking-tight"
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 600,
+                  color: isDark ? '#F5F5F0' : '#0A0A0B',
+                }}>
               AppleScript
             </h4>
-            <p className="text-[13px] opacity-60 mb-4" style={{ fontFamily: 'var(--font-body)' }}>
+            <p className="text-[13px] opacity-60 mb-4"
+               style={{
+                 fontFamily: 'var(--font-body)',
+                 color: isDark ? '#F5F5F0' : '#0A0A0B',
+               }}>
               Automate macOS workflows
             </p>
             <div className="flex items-center gap-2">
               <div className="flex-1 h-2 rounded-full overflow-hidden relative"
                    style={{
-                     background: 'rgba(255, 255, 255, 0.05)',
-                     border: '1px solid rgba(255, 255, 255, 0.08)',
+                     background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                     border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
                    }}>
                 <div className="h-full rounded-full relative overflow-hidden"
                      style={{
@@ -296,13 +376,23 @@ export function Dashboard() {
                }} />
           <div className="relative z-10">
             <Sparkles className="w-8 h-8 text-[#C4B5FD] mb-4 drop-shadow-[0_0_12px_rgba(196,181,253,0.6)]" />
-            <h4 className="text-xl mb-2 tracking-tight" style={{ fontFamily: 'var(--font-heading)', fontWeight: 600 }}>
+            <h4 className="text-xl mb-2 tracking-tight"
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 600,
+                  color: isDark ? '#F5F5F0' : '#0A0A0B',
+                }}>
               AI Coach
             </h4>
-            <p className="text-[13px] opacity-60 mb-4" style={{ fontFamily: 'var(--font-body)' }}>
+            <p className="text-[13px] opacity-60 mb-4"
+               style={{
+                 fontFamily: 'var(--font-body)',
+                 color: isDark ? '#F5F5F0' : '#0A0A0B',
+               }}>
               Claude & Gemini assist
             </p>
-            <div className="text-[12px] opacity-50">
+            <div className="text-[12px] opacity-50"
+                 style={{ color: isDark ? '#F5F5F0' : '#0A0A0B' }}>
               Available 24/7
             </div>
           </div>
@@ -311,10 +401,12 @@ export function Dashboard() {
         {/* Common Mistakes */}
         <div className="col-span-6 rounded-[2rem] p-6 group cursor-pointer transition-all duration-500 hover:scale-[1.01] relative overflow-hidden"
              style={{
-               background: 'rgba(20, 20, 22, 0.4)',
-               border: '1px solid rgba(255, 255, 255, 0.1)',
+               background: isDark ? 'rgba(20, 20, 22, 0.4)' : 'rgba(255, 255, 255, 0.5)',
+               border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(255, 255, 255, 0.5)',
                backdropFilter: 'blur(60px) saturate(180%)',
-               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)',
+               boxShadow: isDark
+                 ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)'
+                 : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
              }}>
           <div className="absolute inset-0 opacity-20 pointer-events-none"
                style={{
@@ -322,10 +414,19 @@ export function Dashboard() {
                }} />
           <div className="relative z-10">
             <AlertTriangle className="w-8 h-8 text-[#FFA6C9] mb-4 drop-shadow-[0_0_12px_rgba(255,166,201,0.5)]" />
-            <h4 className="text-xl mb-3 tracking-tight" style={{ fontFamily: 'var(--font-heading)', fontWeight: 600 }}>
+            <h4 className="text-xl mb-3 tracking-tight"
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 600,
+                  color: isDark ? '#F5F5F0' : '#0A0A0B',
+                }}>
               Common Mistakes to Avoid
             </h4>
-            <ul className="space-y-2 text-[13px] opacity-70" style={{ fontFamily: 'var(--font-body)' }}>
+            <ul className="space-y-2 text-[13px] opacity-70"
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  color: isDark ? '#F5F5F0' : '#0A0A0B',
+                }}>
               <li className="flex items-start gap-2">
                 <span className="text-[#FFA6C9] mt-0.5">•</span>
                 <span>Forgetting to quote variables with spaces</span>
@@ -345,10 +446,12 @@ export function Dashboard() {
         {/* Progress Insights */}
         <div className="col-span-6 rounded-[2rem] p-6 group cursor-pointer transition-all duration-500 hover:scale-[1.01] relative overflow-hidden"
              style={{
-               background: 'rgba(20, 20, 22, 0.4)',
-               border: '1px solid rgba(255, 255, 255, 0.1)',
+               background: isDark ? 'rgba(20, 20, 22, 0.4)' : 'rgba(255, 255, 255, 0.5)',
+               border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(255, 255, 255, 0.5)',
                backdropFilter: 'blur(60px) saturate(180%)',
-               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)',
+               boxShadow: isDark
+                 ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)'
+                 : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
              }}>
           <div className="absolute inset-0 opacity-20 pointer-events-none"
                style={{
@@ -356,21 +459,56 @@ export function Dashboard() {
                }} />
           <div className="relative z-10">
             <TrendingUp className="w-8 h-8 text-[#7DD3FC] mb-4 drop-shadow-[0_0_12px_rgba(125,211,252,0.5)]" />
-            <h4 className="text-xl mb-3 tracking-tight" style={{ fontFamily: 'var(--font-heading)', fontWeight: 600 }}>
+            <h4 className="text-xl mb-3 tracking-tight"
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 600,
+                  color: isDark ? '#F5F5F0' : '#0A0A0B',
+                }}>
               This Week's Progress
             </h4>
             <div className="grid grid-cols-3 gap-4">
               <div>
-                <div className="text-2xl mb-1 tracking-tight" style={{ fontFamily: 'var(--font-heading)', fontWeight: 700 }}>5</div>
-                <div className="text-[12px] opacity-50">Lessons</div>
+                <div className="text-2xl mb-1 tracking-tight"
+                     style={{
+                       fontFamily: 'var(--font-heading)',
+                       fontWeight: 700,
+                       color: isDark ? '#F5F5F0' : '#0A0A0B',
+                     }}>
+                  5
+                </div>
+                <div className="text-[12px] opacity-50"
+                     style={{ color: isDark ? '#F5F5F0' : '#0A0A0B' }}>
+                  Lessons
+                </div>
               </div>
               <div>
-                <div className="text-2xl mb-1 tracking-tight" style={{ fontFamily: 'var(--font-heading)', fontWeight: 700 }}>12</div>
-                <div className="text-[12px] opacity-50">Scripts</div>
+                <div className="text-2xl mb-1 tracking-tight"
+                     style={{
+                       fontFamily: 'var(--font-heading)',
+                       fontWeight: 700,
+                       color: isDark ? '#F5F5F0' : '#0A0A0B',
+                     }}>
+                  12
+                </div>
+                <div className="text-[12px] opacity-50"
+                     style={{ color: isDark ? '#F5F5F0' : '#0A0A0B' }}>
+                  Scripts
+                </div>
               </div>
               <div>
-                <div className="text-2xl mb-1 tracking-tight" style={{ fontFamily: 'var(--font-heading)', fontWeight: 700 }}>3h</div>
-                <div className="text-[12px] opacity-50">Study Time</div>
+                <div className="text-2xl mb-1 tracking-tight"
+                     style={{
+                       fontFamily: 'var(--font-heading)',
+                       fontWeight: 700,
+                       color: isDark ? '#F5F5F0' : '#0A0A0B',
+                     }}>
+                  3h
+                </div>
+                <div className="text-[12px] opacity-50"
+                     style={{ color: isDark ? '#F5F5F0' : '#0A0A0B' }}>
+                  Study Time
+                </div>
               </div>
             </div>
           </div>

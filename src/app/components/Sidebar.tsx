@@ -1,11 +1,15 @@
-import { Home, BookOpen, Code, Sparkles, TrendingUp, Settings } from 'lucide-react';
+import { Home, BookOpen, Code, Sparkles, TrendingUp, Settings, Sun, Moon } from 'lucide-react';
 
 interface SidebarProps {
   activeView: string;
   onNavigate: (view: string) => void;
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
 }
 
-export function Sidebar({ activeView, onNavigate }: SidebarProps) {
+export function Sidebar({ activeView, onNavigate, theme, onToggleTheme }: SidebarProps) {
+  const isDark = theme === 'dark';
+
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Home },
     { id: 'lessons', label: 'Lessons', icon: BookOpen },
@@ -17,36 +21,55 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
   return (
     <div className="fixed left-0 top-0 h-screen w-64 p-5 flex flex-col gap-8"
          style={{
-           background: 'rgba(15, 15, 17, 0.5)',
+           background: isDark ? 'rgba(15, 15, 17, 0.5)' : 'rgba(255, 255, 255, 0.6)',
            backdropFilter: 'blur(40px) saturate(150%)',
-           borderRight: '1px solid rgba(255, 255, 255, 0.08)',
-           boxShadow: 'inset -1px 0 0 rgba(255, 255, 255, 0.02)',
+           borderRight: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
+           boxShadow: isDark ? 'inset -1px 0 0 rgba(255, 255, 255, 0.02)' : 'inset -1px 0 0 rgba(0, 0, 0, 0.02)',
          }}>
-      {/* Logo */}
+      {/* Logo & Theme Toggle */}
       <div className="flex flex-col gap-3 pt-2">
-        <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-[1.1rem] flex items-center justify-center relative overflow-hidden"
-               style={{
-                 background: 'linear-gradient(135deg, #FF8B7B 0%, #FFA6C9 100%)',
-                 boxShadow: '0 4px 16px rgba(255, 139, 123, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
-               }}>
-            <Code className="w-5 h-5 text-[#0A0A0B] relative z-10" />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent" />
-          </div>
-          <div>
-            <div className="text-[15px] tracking-tight leading-tight mb-0.5"
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 rounded-[1.1rem] flex items-center justify-center relative overflow-hidden"
                  style={{
-                   fontFamily: 'var(--font-heading)',
-                   fontWeight: 600,
-                   letterSpacing: '-0.02em',
+                   background: 'linear-gradient(135deg, #FF8B7B 0%, #FFA6C9 100%)',
+                   boxShadow: '0 4px 16px rgba(255, 139, 123, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
                  }}>
-              Apple Admin
+              <Code className="w-5 h-5 text-[#0A0A0B] relative z-10" />
+              <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent" />
             </div>
-            <div className="text-[11px] opacity-50 tracking-wide uppercase"
-                 style={{ letterSpacing: '0.06em' }}>
-              Scripting Lab
+            <div>
+              <div className="text-[15px] tracking-tight leading-tight mb-0.5"
+                   style={{
+                     fontFamily: 'var(--font-heading)',
+                     fontWeight: 600,
+                     letterSpacing: '-0.02em',
+                     color: isDark ? '#F5F5F0' : '#0A0A0B',
+                   }}>
+                Apple Admin
+              </div>
+              <div className="text-[11px] opacity-50 tracking-wide uppercase"
+                   style={{ letterSpacing: '0.06em' }}>
+                Scripting Lab
+              </div>
             </div>
           </div>
+
+          {/* Theme Toggle */}
+          <button
+            onClick={onToggleTheme}
+            className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
+            style={{
+              background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+              border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            {isDark ? (
+              <Sun className="w-4 h-4 text-[#FFB5A0]" />
+            ) : (
+              <Moon className="w-4 h-4 text-[#6366F1]" />
+            )}
+          </button>
         </div>
       </div>
 
@@ -68,7 +91,7 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
                 border: isActive
                   ? '1px solid rgba(255, 139, 123, 0.25)'
                   : '1px solid transparent',
-                color: isActive ? '#FFB5A0' : '#A1A1AA',
+                color: isActive ? '#FF8B7B' : (isDark ? '#A1A1AA' : '#71717A'),
                 fontFamily: 'var(--font-body)',
                 boxShadow: isActive
                   ? '0 2px 12px rgba(255, 139, 123, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
@@ -92,15 +115,18 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
         })}
 
         {/* Settings at bottom of nav */}
-        <div className="mt-auto pt-4 border-t border-white/5">
+        <div className="mt-auto pt-4"
+             style={{
+               borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid rgba(0, 0, 0, 0.05)',
+             }}>
           <button
             onClick={() => onNavigate('settings')}
             className="group flex items-center gap-3 px-3.5 py-3 rounded-[1rem] transition-all duration-300 w-full"
             style={{
               background: activeView === 'settings'
-                ? 'rgba(255, 255, 255, 0.05)'
+                ? (isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)')
                 : 'transparent',
-              color: activeView === 'settings' ? '#F5F5F0' : '#71717A',
+              color: activeView === 'settings' ? (isDark ? '#F5F5F0' : '#0A0A0B') : '#71717A',
             }}
           >
             <Settings className="w-[18px] h-[18px] group-hover:rotate-90 transition-transform duration-500" />
@@ -112,9 +138,9 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
       {/* User Profile */}
       <div className="flex items-center gap-3 p-3.5 rounded-[1rem] relative overflow-hidden"
            style={{
-             background: 'rgba(255, 255, 255, 0.03)',
-             border: '1px solid rgba(255, 255, 255, 0.06)',
-             boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.03)',
+             background: isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.03)',
+             border: isDark ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid rgba(0, 0, 0, 0.06)',
+             boxShadow: isDark ? 'inset 0 1px 0 rgba(255, 255, 255, 0.03)' : 'inset 0 1px 0 rgba(255, 255, 255, 0.5)',
            }}>
         <div className="w-10 h-10 rounded-full relative overflow-hidden"
              style={{
@@ -125,7 +151,11 @@ export function Sidebar({ activeView, onNavigate }: SidebarProps) {
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-[13px] truncate tracking-wide mb-0.5"
-             style={{ fontFamily: 'var(--font-body)', fontWeight: 500 }}>
+             style={{
+               fontFamily: 'var(--font-body)',
+               fontWeight: 500,
+               color: isDark ? '#F5F5F0' : '#0A0A0B',
+             }}>
             Creative Pro
           </p>
           <div className="flex items-center gap-2">

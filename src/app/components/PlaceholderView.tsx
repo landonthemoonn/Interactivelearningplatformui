@@ -2,9 +2,11 @@ import { Settings, Save } from 'lucide-react';
 
 interface PlaceholderViewProps {
   type: 'settings' | 'saved';
+  theme: 'light' | 'dark';
 }
 
-export function PlaceholderView({ type }: PlaceholderViewProps) {
+export function PlaceholderView({ type, theme }: PlaceholderViewProps) {
+  const isDark = theme === 'dark';
   const config = {
     settings: {
       icon: Settings,
@@ -26,10 +28,18 @@ export function PlaceholderView({ type }: PlaceholderViewProps) {
         <div className="w-20 h-20 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-[#C4B5FD] to-[#7DD3FC] flex items-center justify-center">
           <Icon className="w-10 h-10 text-[#0A0A0B]" />
         </div>
-        <h2 className="text-3xl mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+        <h2 className="text-3xl mb-4"
+            style={{
+              fontFamily: 'var(--font-heading)',
+              color: isDark ? '#F5F5F0' : '#0A0A0B',
+            }}>
           {title}
         </h2>
-        <p className="opacity-80" style={{ fontFamily: 'var(--font-body)' }}>
+        <p className="opacity-80"
+           style={{
+             fontFamily: 'var(--font-body)',
+             color: isDark ? '#F5F5F0' : '#0A0A0B',
+           }}>
           {desc}
         </p>
       </div>
