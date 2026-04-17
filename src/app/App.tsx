@@ -28,7 +28,7 @@ export default function App() {
   const renderView = () => {
     switch (activeView) {
       case 'dashboard':
-        return <Dashboard theme={theme} />;
+        return <Dashboard theme={theme} onNavigate={setActiveView} />;
       case 'lessons':
         return <LessonView theme={theme} />;
       case 'playground':

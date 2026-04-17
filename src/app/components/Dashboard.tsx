@@ -2,9 +2,10 @@ import { ArrowRight, Terminal, Sparkles, Target, Clock, TrendingUp, CheckCircle2
 
 interface DashboardProps {
   theme: 'light' | 'dark';
+  onNavigate: (view: string) => void;
 }
 
-export function Dashboard({ theme }: DashboardProps) {
+export function Dashboard({ theme, onNavigate }: DashboardProps) {
   const isDark = theme === 'dark';
 
   return (
@@ -66,7 +67,7 @@ export function Dashboard({ theme }: DashboardProps) {
             guided labs, and script reviews.
           </p>
 
-          <button className="group flex items-center gap-3 px-8 py-4 rounded-[1.1rem] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+          <button onClick={() => onNavigate('lessons')} className="group flex items-center gap-3 px-8 py-4 rounded-[1.1rem] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                   style={{
                     background: 'linear-gradient(135deg, #FF8B7B, #FFA6C9)',
                     boxShadow: '0 8px 24px rgba(255, 139, 123, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
@@ -172,7 +173,7 @@ export function Dashboard({ theme }: DashboardProps) {
               </div>
             </div>
 
-            <button className="flex items-center gap-2 px-6 py-3 rounded-[1rem] transition-all hover:scale-[1.02]"
+            <button onClick={() => onNavigate('lessons')} className="flex items-center gap-2 px-6 py-3 rounded-[1rem] transition-all hover:scale-[1.02]"
                     style={{
                       background: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
                       border: isDark ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid rgba(0, 0, 0, 0.12)',
