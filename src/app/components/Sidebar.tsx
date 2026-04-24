@@ -1,4 +1,4 @@
-import { Home, BookOpen, Code, Sparkles, TrendingUp, Settings, Sun, Moon } from 'lucide-react';
+import { Home, BookOpen, Code, Sparkles, TrendingUp, Settings, Sun, Moon, Library, Layers } from 'lucide-react';
 
 interface SidebarProps {
   activeView: string;
@@ -13,6 +13,8 @@ export function Sidebar({ activeView, onNavigate, theme, onToggleTheme }: Sideba
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Home },
     { id: 'lessons', label: 'Lessons', icon: BookOpen },
+    { id: 'recipes', label: 'Recipes', icon: Layers },
+    { id: 'glossary', label: 'Glossary', icon: Library },
     { id: 'playground', label: 'Playground', icon: Code },
     { id: 'ai-coach', label: 'AI Coach', icon: Sparkles },
     { id: 'progress', label: 'Progress', icon: TrendingUp },

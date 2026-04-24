@@ -1,4 +1,4 @@
-import { ArrowRight, Terminal, Sparkles, Target, Clock, TrendingUp, CheckCircle2, Flame, BookMarked, AlertTriangle } from 'lucide-react';
+import { ArrowRight, Terminal, Sparkles, Target, Clock, CheckCircle2, Flame, BookMarked, AlertTriangle, Zap, Shield, FileCode } from 'lucide-react';
 
 interface DashboardProps {
   theme: 'light' | 'dark';
@@ -6,6 +6,15 @@ interface DashboardProps {
 
 export function Dashboard({ theme }: DashboardProps) {
   const isDark = theme === 'dark';
+
+  const learningTracks = [
+    { name: 'Shell Scripting Fundamentals', progress: 70, color: '#86EFAC', icon: Terminal },
+    { name: 'macOS Admin Scripting', progress: 45, color: '#C4B5FD', icon: Shield },
+    { name: 'Apple Automation', progress: 30, color: '#FFB5A0', icon: Zap },
+    { name: 'Real-World IT Tasks', progress: 55, color: '#7DD3FC', icon: Target },
+    { name: 'Jamf/MDM Readiness', progress: 40, color: '#FFA6C9', icon: FileCode },
+    { name: 'AI-Assisted Scripting', progress: 60, color: '#A78BFA', icon: Sparkles },
+  ];
 
   return (
     <div className="w-full p-8 pb-16 space-y-8 animate-[fadeIn_0.6s_ease-out]">
@@ -21,7 +30,6 @@ export function Dashboard({ theme }: DashboardProps) {
                ? '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08)'
                : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
            }}>
-        {/* Inner glow */}
         <div className="absolute inset-0 rounded-[2rem] opacity-40"
              style={{
                background: 'radial-gradient(circle at 30% 20%, rgba(255, 139, 123, 0.15), transparent 50%), radial-gradient(circle at 70% 80%, rgba(196, 181, 253, 0.12), transparent 50%)',
@@ -37,7 +45,7 @@ export function Dashboard({ theme }: DashboardProps) {
                }}>
             <Sparkles className="w-4 h-4 text-[#FF8B7B]" />
             <span className="text-[13px] text-[#FFB5A0] tracking-wide" style={{ fontFamily: 'var(--font-body)', fontWeight: 500 }}>
-              AI-Powered Learning
+              Real-World Mac Admin Skills
             </span>
           </div>
 
@@ -62,8 +70,8 @@ export function Dashboard({ theme }: DashboardProps) {
                opacity: isDark ? 0.7 : 0.6,
                color: isDark ? '#F5F5F0' : '#0A0A0B',
              }}>
-            Master shell, AppleScript, and AI-assisted automation through real-world lessons,
-            guided labs, and script reviews.
+            Master shell, AppleScript, and AI-assisted automation through practical IT workflows.
+            Build admin-safe scripts for Jamf, MDM, and real deployment contexts.
           </p>
 
           <button className="group flex items-center gap-3 px-8 py-4 rounded-[1.1rem] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
@@ -78,16 +86,15 @@ export function Dashboard({ theme }: DashboardProps) {
           </button>
         </div>
 
-        {/* Decorative gradient bloom */}
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-20 blur-[100px] pointer-events-none"
              style={{ background: 'radial-gradient(circle, #FF8B7B, transparent)' }} />
         <div className="absolute bottom-0 left-1/3 w-80 h-80 rounded-full opacity-15 blur-[100px] pointer-events-none"
              style={{ background: 'radial-gradient(circle, #C4B5FD, transparent)' }} />
       </div>
 
-      {/* Bento Grid */}
+      {/* Learning Tracks Grid */}
       <div className="grid grid-cols-12 gap-6">
-        {/* Continue Learning - Large */}
+        {/* Current Lesson - Featured */}
         <div className="col-span-8 row-span-2 rounded-[2rem] p-8 group cursor-pointer transition-all duration-500 hover:scale-[1.01] relative overflow-hidden"
              style={{
                background: isDark ? 'rgba(20, 20, 22, 0.4)' : 'rgba(255, 255, 255, 0.5)',
@@ -97,7 +104,6 @@ export function Dashboard({ theme }: DashboardProps) {
                  ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)'
                  : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
              }}>
-          {/* Localized glow */}
           <div className="absolute inset-0 opacity-30 pointer-events-none"
                style={{
                  background: 'radial-gradient(circle at 80% 20%, rgba(125, 211, 252, 0.15), transparent 60%)',
@@ -120,7 +126,7 @@ export function Dashboard({ theme }: DashboardProps) {
                       letterSpacing: '-0.02em',
                       color: isDark ? '#F5F5F0' : '#0A0A0B',
                     }}>
-                  Lesson 12: Error Handling
+                  Error Handling & Exit Codes
                 </h3>
                 <p className="text-[15px] leading-relaxed"
                    style={{
@@ -128,7 +134,8 @@ export function Dashboard({ theme }: DashboardProps) {
                      opacity: isDark ? 0.7 : 0.6,
                      color: isDark ? '#F5F5F0' : '#0A0A0B',
                    }}>
-                  Learn to catch and handle errors gracefully in your scripts
+                  Learn to catch and handle errors gracefully in production scripts.
+                  Essential for MDM deployments and admin workflows.
                 </p>
               </div>
               <div className="px-4 py-2 rounded-full text-[13px] tracking-wide"
@@ -163,7 +170,7 @@ export function Dashboard({ theme }: DashboardProps) {
                    style={{ color: isDark ? '#F5F5F0' : '#0A0A0B' }}>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4" />
-                  <span>15 min left</span>
+                  <span>12 min left</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Target className="w-4 h-4" />
@@ -186,7 +193,7 @@ export function Dashboard({ theme }: DashboardProps) {
           </div>
         </div>
 
-        {/* Current Streak */}
+        {/* Streak Card */}
         <div className="col-span-4 rounded-[2rem] p-6 group cursor-pointer transition-all duration-500 hover:scale-[1.02] relative overflow-hidden"
              style={{
                background: 'linear-gradient(135deg, rgba(255, 139, 123, 0.08), rgba(255, 181, 160, 0.08))',
@@ -244,7 +251,7 @@ export function Dashboard({ theme }: DashboardProps) {
                    letterSpacing: '-0.03em',
                    color: isDark ? '#F5F5F0' : '#0A0A0B',
                  }}>
-              38
+              42
             </div>
             <div className="text-[13px] opacity-70 tracking-wide"
                  style={{
@@ -255,13 +262,62 @@ export function Dashboard({ theme }: DashboardProps) {
             </div>
             <div className="mt-4 text-[12px] opacity-50"
                  style={{ color: isDark ? '#F5F5F0' : '#0A0A0B' }}>
-              +3 this week
+              +5 this week
             </div>
           </div>
         </div>
 
-        {/* Shell Scripting Path */}
-        <div className="col-span-4 rounded-[2rem] p-6 group cursor-pointer transition-all duration-500 hover:scale-[1.02] relative overflow-hidden"
+        {/* Learning Tracks - 3 columns */}
+        {learningTracks.slice(0, 3).map((track, index) => {
+          const Icon = track.icon;
+          return (
+            <div key={index} className="col-span-4 rounded-[2rem] p-6 group cursor-pointer transition-all duration-500 hover:scale-[1.02] relative overflow-hidden"
+                 style={{
+                   background: isDark ? 'rgba(20, 20, 22, 0.4)' : 'rgba(255, 255, 255, 0.5)',
+                   border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(255, 255, 255, 0.5)',
+                   backdropFilter: 'blur(60px) saturate(180%)',
+                   boxShadow: isDark
+                     ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)'
+                     : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+                 }}>
+              <div className="absolute inset-0 opacity-25 pointer-events-none"
+                   style={{
+                     background: `radial-gradient(circle at 70% 30%, ${track.color}20, transparent 70%)`,
+                   }} />
+              <div className="relative z-10">
+                <Icon className="w-8 h-8 mb-4" style={{ color: track.color, filter: `drop-shadow(0 0 12px ${track.color}80)` }} />
+                <h4 className="text-xl mb-2 tracking-tight"
+                    style={{
+                      fontFamily: 'var(--font-heading)',
+                      fontWeight: 600,
+                      color: isDark ? '#F5F5F0' : '#0A0A0B',
+                    }}>
+                  {track.name}
+                </h4>
+                <div className="flex items-center gap-2 mt-4">
+                  <div className="flex-1 h-2 rounded-full overflow-hidden relative"
+                       style={{
+                         background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                         border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
+                       }}>
+                    <div className="h-full rounded-full relative overflow-hidden"
+                         style={{
+                           width: `${track.progress}%`,
+                           background: track.color,
+                           boxShadow: `0 0 16px ${track.color}99`,
+                         }}>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_infinite]" />
+                    </div>
+                  </div>
+                  <span className="text-[12px] opacity-50 font-medium">{track.progress}%</span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+        {/* Quick Recipes Card */}
+        <div className="col-span-6 rounded-[2rem] p-6 group cursor-pointer transition-all duration-500 hover:scale-[1.01] relative overflow-hidden"
              style={{
                background: isDark ? 'rgba(20, 20, 22, 0.4)' : 'rgba(255, 255, 255, 0.5)',
                border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(255, 255, 255, 0.5)',
@@ -270,100 +326,43 @@ export function Dashboard({ theme }: DashboardProps) {
                  ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)'
                  : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
              }}>
-          <div className="absolute inset-0 opacity-25 pointer-events-none"
+          <div className="absolute inset-0 opacity-20 pointer-events-none"
                style={{
-                 background: 'radial-gradient(circle at 70% 30%, rgba(134, 239, 172, 0.15), transparent 70%)',
+                 background: 'radial-gradient(circle at 80% 20%, rgba(134, 239, 172, 0.12), transparent 70%)',
                }} />
           <div className="relative z-10">
-            <Terminal className="w-8 h-8 text-[#86EFAC] mb-4 drop-shadow-[0_0_12px_rgba(134,239,172,0.5)]" />
-            <h4 className="text-xl mb-2 tracking-tight"
+            <FileCode className="w-8 h-8 text-[#86EFAC] mb-4 drop-shadow-[0_0_12px_rgba(134,239,172,0.5)]" />
+            <h4 className="text-xl mb-3 tracking-tight"
                 style={{
                   fontFamily: 'var(--font-heading)',
                   fontWeight: 600,
                   color: isDark ? '#F5F5F0' : '#0A0A0B',
                 }}>
-              Shell Scripting
+              Quick Recipes
             </h4>
-            <p className="text-[13px] opacity-60 mb-4"
-               style={{
-                 fontFamily: 'var(--font-body)',
-                 color: isDark ? '#F5F5F0' : '#0A0A0B',
-               }}>
-              Master bash fundamentals
-            </p>
-            <div className="flex items-center gap-2">
-              <div className="flex-1 h-2 rounded-full overflow-hidden relative"
-                   style={{
-                     background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
-                     border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
-                   }}>
-                <div className="h-full rounded-full relative overflow-hidden"
-                     style={{
-                       width: '70%',
-                       background: '#86EFAC',
-                       boxShadow: '0 0 16px rgba(134, 239, 172, 0.6)',
-                     }}>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_infinite]" />
-                </div>
-              </div>
-              <span className="text-[12px] opacity-50 font-medium">70%</span>
-            </div>
-          </div>
-        </div>
-
-        {/* AppleScript Basics */}
-        <div className="col-span-4 rounded-[2rem] p-6 group cursor-pointer transition-all duration-500 hover:scale-[1.02] relative overflow-hidden"
-             style={{
-               background: isDark ? 'rgba(20, 20, 22, 0.4)' : 'rgba(255, 255, 255, 0.5)',
-               border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(255, 255, 255, 0.5)',
-               backdropFilter: 'blur(60px) saturate(180%)',
-               boxShadow: isDark
-                 ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)'
-                 : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
-             }}>
-          <div className="absolute inset-0 opacity-25 pointer-events-none"
-               style={{
-                 background: 'radial-gradient(circle at 70% 30%, rgba(196, 181, 253, 0.15), transparent 70%)',
-               }} />
-          <div className="relative z-10">
-            <BookMarked className="w-8 h-8 text-[#C4B5FD] mb-4 drop-shadow-[0_0_12px_rgba(196,181,253,0.5)]" />
-            <h4 className="text-xl mb-2 tracking-tight"
+            <ul className="space-y-2 text-[13px] opacity-70"
                 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 600,
+                  fontFamily: 'var(--font-body)',
                   color: isDark ? '#F5F5F0' : '#0A0A0B',
                 }}>
-              AppleScript
-            </h4>
-            <p className="text-[13px] opacity-60 mb-4"
-               style={{
-                 fontFamily: 'var(--font-body)',
-                 color: isDark ? '#F5F5F0' : '#0A0A0B',
-               }}>
-              Automate macOS workflows
-            </p>
-            <div className="flex items-center gap-2">
-              <div className="flex-1 h-2 rounded-full overflow-hidden relative"
-                   style={{
-                     background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
-                     border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.08)',
-                   }}>
-                <div className="h-full rounded-full relative overflow-hidden"
-                     style={{
-                       width: '45%',
-                       background: '#C4B5FD',
-                       boxShadow: '0 0 16px rgba(196, 181, 253, 0.6)',
-                     }}>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_infinite]" />
-                </div>
-              </div>
-              <span className="text-[12px] opacity-50 font-medium">45%</span>
-            </div>
+              <li className="flex items-start gap-2">
+                <span className="text-[#86EFAC] mt-0.5">•</span>
+                <span>Get current logged-in user</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#86EFAC] mt-0.5">•</span>
+                <span>Check if app is installed</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#86EFAC] mt-0.5">•</span>
+                <span>Gather serial number and OS version</span>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* AI Assistance */}
-        <div className="col-span-4 rounded-[2rem] p-6 group cursor-pointer transition-all duration-500 hover:scale-[1.02] relative overflow-hidden"
+        {/* AI Prompt of the Day */}
+        <div className="col-span-6 rounded-[2rem] p-6 group cursor-pointer transition-all duration-500 hover:scale-[1.01] relative overflow-hidden"
              style={{
                background: 'linear-gradient(135deg, rgba(196, 181, 253, 0.08), rgba(167, 139, 250, 0.08))',
                border: '1px solid rgba(196, 181, 253, 0.25)',
@@ -376,140 +375,24 @@ export function Dashboard({ theme }: DashboardProps) {
                }} />
           <div className="relative z-10">
             <Sparkles className="w-8 h-8 text-[#C4B5FD] mb-4 drop-shadow-[0_0_12px_rgba(196,181,253,0.6)]" />
-            <h4 className="text-xl mb-2 tracking-tight"
+            <h4 className="text-xl mb-3 tracking-tight"
                 style={{
                   fontFamily: 'var(--font-heading)',
                   fontWeight: 600,
                   color: isDark ? '#F5F5F0' : '#0A0A0B',
                 }}>
-              AI Coach
+              AI Prompt of the Day
             </h4>
-            <p className="text-[13px] opacity-60 mb-4"
+            <p className="text-[13px] opacity-80 mb-3"
                style={{
                  fontFamily: 'var(--font-body)',
                  color: isDark ? '#F5F5F0' : '#0A0A0B',
                }}>
-              Claude & Gemini assist
+              "Review this script for Mac admin best practices and flag any risks for MDM deployment."
             </p>
-            <div className="text-[12px] opacity-50"
+            <div className="text-[11px] opacity-50"
                  style={{ color: isDark ? '#F5F5F0' : '#0A0A0B' }}>
-              Available 24/7
-            </div>
-          </div>
-        </div>
-
-        {/* Common Mistakes */}
-        <div className="col-span-6 rounded-[2rem] p-6 group cursor-pointer transition-all duration-500 hover:scale-[1.01] relative overflow-hidden"
-             style={{
-               background: isDark ? 'rgba(20, 20, 22, 0.4)' : 'rgba(255, 255, 255, 0.5)',
-               border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(255, 255, 255, 0.5)',
-               backdropFilter: 'blur(60px) saturate(180%)',
-               boxShadow: isDark
-                 ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)'
-                 : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
-             }}>
-          <div className="absolute inset-0 opacity-20 pointer-events-none"
-               style={{
-                 background: 'radial-gradient(circle at 80% 20%, rgba(255, 166, 201, 0.12), transparent 70%)',
-               }} />
-          <div className="relative z-10">
-            <AlertTriangle className="w-8 h-8 text-[#FFA6C9] mb-4 drop-shadow-[0_0_12px_rgba(255,166,201,0.5)]" />
-            <h4 className="text-xl mb-3 tracking-tight"
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 600,
-                  color: isDark ? '#F5F5F0' : '#0A0A0B',
-                }}>
-              Common Mistakes to Avoid
-            </h4>
-            <ul className="space-y-2 text-[13px] opacity-70"
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  color: isDark ? '#F5F5F0' : '#0A0A0B',
-                }}>
-              <li className="flex items-start gap-2">
-                <span className="text-[#FFA6C9] mt-0.5">•</span>
-                <span>Forgetting to quote variables with spaces</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#FFA6C9] mt-0.5">•</span>
-                <span>Not checking command exit codes</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#FFA6C9] mt-0.5">•</span>
-                <span>Hardcoding paths instead of using variables</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Progress Insights */}
-        <div className="col-span-6 rounded-[2rem] p-6 group cursor-pointer transition-all duration-500 hover:scale-[1.01] relative overflow-hidden"
-             style={{
-               background: isDark ? 'rgba(20, 20, 22, 0.4)' : 'rgba(255, 255, 255, 0.5)',
-               border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(255, 255, 255, 0.5)',
-               backdropFilter: 'blur(60px) saturate(180%)',
-               boxShadow: isDark
-                 ? '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06)'
-                 : '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
-             }}>
-          <div className="absolute inset-0 opacity-20 pointer-events-none"
-               style={{
-                 background: 'radial-gradient(circle at 20% 20%, rgba(125, 211, 252, 0.12), transparent 70%)',
-               }} />
-          <div className="relative z-10">
-            <TrendingUp className="w-8 h-8 text-[#7DD3FC] mb-4 drop-shadow-[0_0_12px_rgba(125,211,252,0.5)]" />
-            <h4 className="text-xl mb-3 tracking-tight"
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 600,
-                  color: isDark ? '#F5F5F0' : '#0A0A0B',
-                }}>
-              This Week's Progress
-            </h4>
-            <div className="grid grid-cols-3 gap-4">
-              <div>
-                <div className="text-2xl mb-1 tracking-tight"
-                     style={{
-                       fontFamily: 'var(--font-heading)',
-                       fontWeight: 700,
-                       color: isDark ? '#F5F5F0' : '#0A0A0B',
-                     }}>
-                  5
-                </div>
-                <div className="text-[12px] opacity-50"
-                     style={{ color: isDark ? '#F5F5F0' : '#0A0A0B' }}>
-                  Lessons
-                </div>
-              </div>
-              <div>
-                <div className="text-2xl mb-1 tracking-tight"
-                     style={{
-                       fontFamily: 'var(--font-heading)',
-                       fontWeight: 700,
-                       color: isDark ? '#F5F5F0' : '#0A0A0B',
-                     }}>
-                  12
-                </div>
-                <div className="text-[12px] opacity-50"
-                     style={{ color: isDark ? '#F5F5F0' : '#0A0A0B' }}>
-                  Scripts
-                </div>
-              </div>
-              <div>
-                <div className="text-2xl mb-1 tracking-tight"
-                     style={{
-                       fontFamily: 'var(--font-heading)',
-                       fontWeight: 700,
-                       color: isDark ? '#F5F5F0' : '#0A0A0B',
-                     }}>
-                  3h
-                </div>
-                <div className="text-[12px] opacity-50"
-                     style={{ color: isDark ? '#F5F5F0' : '#0A0A0B' }}>
-                  Study Time
-                </div>
-              </div>
+              Try it in AI Coach →
             </div>
           </div>
         </div>

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { Dashboard } from './components/Dashboard';
 import { LessonView } from './components/LessonView';
+import { Recipes } from './components/Recipes';
+import { Glossary } from './components/Glossary';
 import { ScriptPlayground } from './components/ScriptPlayground';
 import { AIAssistant } from './components/AIAssistant';
 import { ProgressTracker } from './components/ProgressTracker';
@@ -31,6 +33,10 @@ export default function App() {
         return <Dashboard theme={theme} />;
       case 'lessons':
         return <LessonView theme={theme} />;
+      case 'recipes':
+        return <Recipes theme={theme} />;
+      case 'glossary':
+        return <Glossary theme={theme} />;
       case 'playground':
         return <ScriptPlayground theme={theme} />;
       case 'ai-coach':
